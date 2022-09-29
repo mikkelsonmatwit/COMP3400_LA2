@@ -1,21 +1,14 @@
-cmake_minimum_required(VERSION 3.14)
+add_library(libparta parta.c parta.h)
+target_include_directories(libparta PUBLIC .)
+target_compile_options(libparta PRIVATE -Wall -Wextra -Wvla -ggdb -fsanitize=address)
+target_compile_features(libparta PUBLIC c_std_11)
 
-project(a1)
+add_library(libpartb partb.c partb.h)
+target_include_directories(libpartb PUBLIC .)
+target_compile_options(libpartb PRIVATE -Wall -Wextra -Wvla -ggdb -fsanitize=address)
+target_compile_features(libpartb PUBLIC c_std_11)
 
-Include(FetchContent)
-
-FetchContent_Declare(
-    Catch2
-    GIT_REPOSITORY https://github.com/catchorg/Catch2.git
-    GIT_TAG        v2.13.9)
-
-FetchContent_MakeAvailable(Catch2)
-
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_BINARY_DIR}/_deps/catch2-src/contrib")
-
-include(CTest)
-include(Catch)
-
-add_subdirectory(src)
-add_subdirectory(tests)
-
+add_library(libpartc partc.c partc.h)
+target_include_directories(libpartc PUBLIC .)
+target_compile_options(libpartc PRIVATE -Wall -Wextra -Wvla -ggdb -fsanitize=address)
+target_compile_features(libpartc PUBLIC c_std_11)
